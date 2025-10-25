@@ -1,0 +1,91 @@
+<!-- Template principal pour HistoryComponent -->
+<div class="history-container">
+    <mat-card>
+        <mat-card-title>Historique des diagnostics</mat-card-title>
+        <mat-form-field appearance="outline" class="search-field">
+            <mat-label>Rechercher</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filtrer par nom, date, etc..."
+                aria-label="Filtrer les diagnostics">
+        </mat-form-field>
+        <div class="table-responsive">
+            <table mat-table [dataSource]="dataSource" matSort #sort class="mat-elevation-z8"
+                aria-label="Tableau des diagnostics" role="table">
+                <!-- Date -->
+                <ng-container matColumnDef="createdAt">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                    <td mat-cell *matCellDef="let caseItem">{{ formatDate(caseItem.createdAt) }}</td>
+                </ng-container>
+                <!-- NSS -->
+                <ng-container matColumnDef="NSS">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>NSS</th>
+                    <td mat-cell *matCellDef="let caseItem">{{ caseItem.facts.NSS }}</td>
+                </ng-container>
+                <!-- Âge mère -->
+                <ng-container matColumnDef="AgeMere">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Âge mère</th>
+                    <td mat-cell *matCellDef="let caseItem">{{ caseItem.facts.AgeMere }}</td>
+                </ng-container>
+                <!-- NI -->
+                <ng-container matColumnDef="NI">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>NI</th>
+                    <td mat-cell *matCellDef="let caseItem">{{ caseItem.facts.NI }}</td>
+                </ng-container>
+                <!-- AAMA -->
+                <ng-container matColumnDef="AAMA">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>AAMA</th>
+                    <td mat-cell *matCellDef="let caseItem">{{ caseItem.facts.AAMA === 1 ? 'Oui' : 'Non' }}</td>
+                </ng-container>
+                <!-- MAQA -->
+                <ng-container matColumnDef="MAQA">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>MAQA</th>
+                    <td mat-cell *matCellDef="let caseItem">{{ caseItem.facts.MAQA === 1 ? 'Oui' : 'Non' }}</td>
+                </ng-container>
+                <!-- SML -->
+                <ng-container matColumnDef="SML">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>SML</th>
+                    <td mat-cell *matCellDef="let caseItem">{{ caseItem.facts.SML === 1 ? 'Oui' : 'Non' }}</td>
+                </ng-container>
+                <!-- Actions count -->
+                <ng-container matColumnDef="actionsCount">
+                    <th mat-header-cell *matHeaderCellDef>Nb actions</th>
+                    <td mat-cell *matCellDef="let caseItem">{{ caseItem.result.actions.length }}</td>
+                </ng-container>
+                <!-- Rules count -->
+                <ng-container matColumnDef="rulesCount">
+                    <th mat-header-cell *matHeaderCellDef>Nb règles</th>
+                    <td mat-cell *matCellDef="let caseItem">{{ caseItem.result.firedRules.length }}</td>
+                </ng-container>
+                <!-- Actions boutons -->
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>Actions</th>
+                    <td mat-cell *matCellDef="let caseItem">
+                        <button mat-icon-button color="primary" (click)="viewCaseDetails(caseItem)"
+                            aria-label="Voir les détails">
+                            <mat-icon>visibility</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deleteCase(caseItem)"
+                            aria-label="Supprimer le cas">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button mat-icon-button color="accent" (click)="exportCase(caseItem)"
+                            aria-label="Exporter le cas">
+                            <mat-icon>download</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Pagination"
+                aria-describedby="pagination-description"></mat-paginator>
+            <span id="pagination-description" class="visually-hidden">Utilisez les boutons pour naviguer entre les pages
+                du tableau des diagnostics</span>
+        </div>
+        <div class="actions-bar">
+            <button mat-raised-button color="primary" (click)="exportAllCases()" aria-label="Exporter tout">Exporter
+                tout</button>
+            <button mat-raised-button color="warn" (click)="clearAllCases()" aria-label="Tout supprimer">Tout
+                supprimer</button>
+        </div>
+    </mat-card>
+</div>

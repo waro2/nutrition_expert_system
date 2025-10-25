@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>Détails du cas - {{ data.id }}</h2>
+<mat-dialog-content class="dialog-content">
+    <div class="case-info">
+        <p><strong>Date de création:</strong> {{ data.createdAt | date:'dd/MM/yyyy HH:mm' }}</p>
+        <mat-divider></mat-divider>
+        <h3>Données saisies</h3>
+        <div class="facts-grid">
+            <div class="fact-item"><span class="fact-label">Séances sensibilisation:</span><span class="fact-value">{{
+                    data.facts.NSS }}</span></div>
+            <div class="fact-item"><span class="fact-label">Participation éducative:</span><span class="fact-value">{{
+                    data.facts.Peduca ? 'Oui' : 'Non' }}</span></div>
+            <div class="fact-item"><span class="fact-label">Niveau instruction:</span><span class="fact-value">{{
+                    getNILabel(data.facts.NI) }}</span></div>
+            <div class="fact-item"><span class="fact-label">Activités mensuelles:</span><span class="fact-value">{{
+                    data.facts.NAM }}</span></div>
+            <div class="fact-item"><span class="fact-label">Âge mère:</span><span class="fact-value">{{
+                    data.facts.AgeMere }} ans</span></div>
+            <div class="fact-item"><span class="fact-label">AAMA:</span><span class="fact-value">{{ data.facts.AAMA ?
+                    'Oui' : 'Non' }}</span></div>
+            <div class="fact-item"><span class="fact-label">MAQA:</span><span class="fact-value">{{ data.facts.MAQA ?
+                    'Oui' : 'Non' }}</span></div>
+            <div class="fact-item"><span class="fact-label">SML:</span><span class="fact-value">{{ data.facts.SML ?
+                    'Oui' : 'Non' }}</span></div>
+        </div>
+        <mat-divider></mat-divider>
+        <h3>Recommandations ({{ data.result.actions.length }})</h3>
+        <div class="actions-list">
+            <mat-card *ngFor="let action of data.result.actions" class="action-card">
+                <mat-card-content>
+                    <div class="action-header">
+                        <mat-chip [color]="getPriorityColor(action.priority)" selected>{{
+                            getPriorityLabel(action.priority) }}</mat-chip>
+                        <span class="action-type">{{ getActionTypeLabel(action.type) }}</span>
+                        <span class="rule-id">{{ action.ruleId }}</span>
+                    </div>
+                    <p class="action-message">{{ action.msg }}</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Fermer</button>
+    <button mat-raised-button color="primary" (click)="exportCase()">
+        <mat-icon>download</mat-icon>
+        Exporter
+    </button>
+</mat-dialog-actions>

@@ -1,0 +1,46 @@
+.dialog-content {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.fact-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.fact-label {
+    font-weight: 500;
+}
+
+.actions-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 16px;
+}
+
+.action-card {
+    margin-bottom: 8px;
+}
+
+.action-header {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.rule-id {
+    font-size: 12px;
+    color: #666;
+    margin-left: auto;
+}

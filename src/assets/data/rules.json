@@ -1,0 +1,405 @@
+{
+    "rules": [
+        {
+            "id": "R1a",
+            "when": [
+                {
+                    "var": "NSS",
+                    "op": "=",
+                    "val": 0
+                },
+                {
+                    "var": "Peduca",
+                    "op": "=",
+                    "val": 0
+                }
+            ],
+            "then": [
+                {
+                    "type": "recommendation",
+                    "msg": "Recommander une première séance de sensibilisation pour améliorer les connaissances des mères."
+                }
+            ],
+            "priority": 90,
+            "tags": [
+                "NSS",
+                "Peduca",
+                "Engagement"
+            ]
+        },
+        {
+            "id": "R1b",
+            "when": [
+                {
+                    "var": "NSS",
+                    "op": "<",
+                    "val": 3
+                }
+            ],
+            "then": [
+                {
+                    "type": "notification",
+                    "msg": "Envoyer une notification pour encourager à suivre plus de séances."
+                }
+            ],
+            "priority": 80,
+            "tags": [
+                "NSS",
+                "Suivi"
+            ]
+        },
+        {
+            "id": "R2",
+            "when": [
+                {
+                    "var": "NSS",
+                    "op": ">=",
+                    "val": 3
+                }
+            ],
+            "then": [
+                {
+                    "type": "action",
+                    "msg": "Proposer une évaluation des connaissances (quiz AAM, MAQA, SML)."
+                }
+            ],
+            "priority": 70,
+            "tags": [
+                "Renforcement"
+            ]
+        },
+        {
+            "id": "R3a",
+            "when": [
+                {
+                    "var": "NI",
+                    "op": "in",
+                    "val": [
+                        0,
+                        1
+                    ]
+                }
+            ],
+            "then": [
+                {
+                    "type": "content",
+                    "msg": "Fournir supports simples et visuels (vidéos, posters)."
+                }
+            ],
+            "priority": 60,
+            "tags": [
+                "NI",
+                "Pédagogie"
+            ]
+        },
+        {
+            "id": "R3b",
+            "when": [
+                {
+                    "var": "NI",
+                    "op": ">=",
+                    "val": 2
+                }
+            ],
+            "then": [
+                {
+                    "type": "content",
+                    "msg": "Proposer modules détaillés : AAM, allaitement, MAQA, SML."
+                }
+            ],
+            "priority": 50
+        },
+        {
+            "id": "R4",
+            "when": [
+                {
+                    "var": "NI",
+                    "op": ">=",
+                    "val": 3
+                },
+                {
+                    "var": "AAMA",
+                    "op": "=",
+                    "val": 0
+                }
+            ],
+            "then": [
+                {
+                    "type": "reminder",
+                    "msg": "Proposer des séances de rappel sur les pratiques alimentaires minimales acceptables."
+                }
+            ],
+            "priority": 75
+        },
+        {
+            "id": "R7a",
+            "when": [
+                {
+                    "var": "NAM",
+                    "op": ">=",
+                    "val": 4
+                }
+            ],
+            "then": [
+                {
+                    "type": "tip",
+                    "msg": "Suggérer des méthodes rapides/efficaces pour améliorer MAQA sans augmenter la charge de travail."
+                }
+            ],
+            "priority": 55
+        },
+        {
+            "id": "R7b",
+            "when": [
+                {
+                    "var": "NAM",
+                    "op": "<",
+                    "val": 2
+                }
+            ],
+            "then": [
+                {
+                    "type": "community",
+                    "msg": "Encourager la participation aux activités communautaires sur les bonnes habitudes nutritionnelles."
+                }
+            ],
+            "priority": 40
+        },
+        {
+            "id": "R8",
+            "when": [
+                {
+                    "var": "AgeMere",
+                    "op": "<",
+                    "val": 25
+                }
+            ],
+            "then": [
+                {
+                    "type": "tip",
+                    "msg": "Fournir des conseils nutritionnels adaptés aux jeunes mères."
+                },
+                {
+                    "type": "monitor",
+                    "msg": "Surveiller de plus près les SML et offrir des conseils spécifiques."
+                }
+            ],
+            "priority": 65
+        },
+        {
+            "id": "R9a",
+            "when": [
+                {
+                    "var": "AAMA",
+                    "op": "=",
+                    "val": 0
+                }
+            ],
+            "then": [
+                {
+                    "type": "program",
+                    "msg": "Mettre en place un suivi intensif + consultations régulières."
+                }
+            ],
+            "priority": 95
+        },
+        {
+            "id": "R9b",
+            "when": [
+                {
+                    "var": "AAMA",
+                    "op": "=",
+                    "val": 1
+                }
+            ],
+            "then": [
+                {
+                    "type": "positive",
+                    "msg": "Continuer à encourager et maintenir les bonnes pratiques avec feedbacks positifs."
+                }
+            ],
+            "priority": 45
+        },
+        {
+            "id": "R10a",
+            "when": [
+                {
+                    "var": "MAQA",
+                    "op": "=",
+                    "val": 0
+                }
+            ],
+            "then": [
+                {
+                    "type": "workshop",
+                    "msg": "Proposer des ateliers pratiques sur l'amélioration de la qualité des aliments."
+                }
+            ],
+            "priority": 85
+        },
+        {
+            "id": "R10b",
+            "when": [
+                {
+                    "var": "SML",
+                    "op": "=",
+                    "val": 0
+                }
+            ],
+            "then": [
+                {
+                    "type": "training",
+                    "msg": "Former à la détection des signes de malnutrition et aux actions à entreprendre."
+                }
+            ],
+            "priority": 85
+        },
+        {
+            "id": "R11",
+            "when": [
+                {
+                    "var": "AgeMere",
+                    "op": "<",
+                    "val": 20
+                },
+                {
+                    "var": "NI",
+                    "op": "<=",
+                    "val": 1
+                }
+            ],
+            "then": [
+                {
+                    "type": "support",
+                    "msg": "Fournir un accompagnement personnalisé intensif pour les jeunes mères peu instruites."
+                }
+            ],
+            "priority": 92,
+            "tags": [
+                "AgeMere",
+                "NI",
+                "Support"
+            ]
+        },
+        {
+            "id": "R12",
+            "when": [
+                {
+                    "var": "NSS",
+                    "op": "=",
+                    "val": 0
+                },
+                {
+                    "var": "NAM",
+                    "op": "<",
+                    "val": 2
+                },
+                {
+                    "var": "AAMA",
+                    "op": "=",
+                    "val": 0
+                }
+            ],
+            "then": [
+                {
+                    "type": "urgent",
+                    "msg": "Intervention d'urgence requise : faible sensibilisation, peu d'activités et alimentation inadéquate."
+                }
+            ],
+            "priority": 100,
+            "tags": [
+                "NSS",
+                "NAM",
+                "AAMA",
+                "Urgent"
+            ]
+        },
+        {
+            "id": "R13",
+            "when": [
+                {
+                    "var": "Peduca",
+                    "op": "=",
+                    "val": 1
+                },
+                {
+                    "var": "MAQA",
+                    "op": "=",
+                    "val": 1
+                },
+                {
+                    "var": "SML",
+                    "op": "=",
+                    "val": 1
+                }
+            ],
+            "then": [
+                {
+                    "type": "positive",
+                    "msg": "Excellente participation ! Continuer à renforcer les bonnes pratiques et envisager un rôle de modèle."
+                }
+            ],
+            "priority": 30,
+            "tags": [
+                "Peduca",
+                "MAQA",
+                "SML",
+                "Excellence"
+            ]
+        },
+        {
+            "id": "R14",
+            "when": [
+                {
+                    "var": "NI",
+                    "op": ">=",
+                    "val": 3
+                },
+                {
+                    "var": "NAM",
+                    "op": ">=",
+                    "val": 5
+                }
+            ],
+            "then": [
+                {
+                    "type": "advanced",
+                    "msg": "Proposer des formations avancées et des responsabilités accrues dans le programme."
+                }
+            ],
+            "priority": 35,
+            "tags": [
+                "NI",
+                "NAM",
+                "Avancé"
+            ]
+        },
+        {
+            "id": "R15",
+            "when": [
+                {
+                    "var": "AgeMere",
+                    "op": ">=",
+                    "val": 35
+                },
+                {
+                    "var": "AAMA",
+                    "op": "=",
+                    "val": 0
+                }
+            ],
+            "then": [
+                {
+                    "type": "followup",
+                    "msg": "Suivi rapproché nécessaire pour les mères plus âgées avec alimentation inadéquate."
+                }
+            ],
+            "priority": 88,
+            "tags": [
+                "AgeMere",
+                "AAMA",
+                "Suivi"
+            ]
+        }
+    ]
+}

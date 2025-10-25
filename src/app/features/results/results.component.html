@@ -1,0 +1,113 @@
+<mat-card *ngIf="result" class="results-card">
+    <mat-card-title>
+        <mat-icon>insights</mat-icon>
+        Résultats de l'analyse
+    </mat-card-title>
+    <div *ngIf="result.actions.length === 0" class="no-results">
+        <mat-icon color="primary" style="font-size: 48px;">check_circle</mat-icon>
+        <p>Aucune action spécifique requise. Les indicateurs sont dans les normes acceptables.</p>
+    </div>
+    <div *ngIf="result.actions.length > 0">
+        <div class="summary">
+            <div class="summary-stats">
+                <div class="stat-item">
+                    <div class="stat-number">{{ result.actions.length }}</div>
+                    <div class="stat-label">Recommandations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{{ result.firedRules.length }}</div>
+                    <div class="stat-label">Règles déclenchées</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{{ getCriticalCount(result.actions) }}</div>
+                    <div class="stat-label">Actions critiques</div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngFor="let group of actionGroups" class="action-group">
+            <div class="group-header">
+                <mat-icon [style.color]="getActionTypeColor(group.type)">{{ getActionTypeIcon(group.type)
+                    }}</mat-icon>
+                <h3>{{ group.typeLabel }}</h3>
+                <span class="group-count">{{ group.actions.length }} action(s)</span>
+            </div>
+            <div class="group-actions">
+                <div *ngFor="let action of group.actions" class="action-item"
+                    [ngClass]="getPriorityColor(action.priority)">
+                    <div class="action-header">
+                        <span class="action-priority">
+                            <mat-icon>priority_high</mat-icon>
+                            {{ getPriorityLabel(action.priority) }}
+                        </span>
+                    </div>
+                    <div class="action-message">{{ action.msg }}</div>
+                    <div class="action-meta">
+                        <span>Règle: {{ action.ruleId }}</span>
+                        <span>Priorité: {{ action.priority }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Affichage personnalisé des recommandations -->
+        <div *ngIf="result.actions.length > 0" class="custom-actions">
+            <div *ngFor="let action of result.actions" class="custom-action-card"
+                [ngClass]="getPriorityColor(action.priority)">
+                <div class="custom-action-header">
+                    <mat-icon [color]="getActionTypeColor(action.type)">{{ getActionTypeIcon(action.type) }}</mat-icon>
+                    <span class="action-type-label">{{ actionTypeLabels[action.type] || action.type }}</span>
+                    <span *ngIf="action.priority >= 90" class="critical-chip">Critique</span>
+                </div>
+                <div class="custom-action-message">{{ action.msg }}</div>
+                <div class="custom-action-meta">
+                    <span><mat-icon>rule</mat-icon> Règle: {{ action.ruleId }}</span>
+                    <span><mat-icon>priority_high</mat-icon> Priorité: {{ getPriorityLabel(action.priority) }}</span>
+                    <button mat-stroked-button color="accent" (click)="exportSingleAction(action)">
+                        <mat-icon>download</mat-icon> Exporter
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- DEBUG: Affichage temporaire du contenu des actions et actionGroups -->
+        <div style="margin:2rem 0; background:#fffbe6; color:#333; padding:1rem; border-radius:8px;">
+            <h4>DEBUG: result.actions</h4>
+            <pre>{{ result.actions | json }}</pre>
+            <h4>DEBUG: actionGroups</h4>
+            <pre>{{ actionGroups | json }}</pre>
+        </div>
+
+        <!-- Affichage de secours si actionGroups est vide mais result.actions contient des éléments -->
+        <div *ngIf="actionGroups.length === 0 && result.actions.length > 0" class="action-group">
+            <div class="group-header">
+                <mat-icon color="primary">lightbulb</mat-icon>
+                <h3>Recommandations</h3>
+                <span class="group-count">{{ result.actions.length }} action(s)</span>
+            </div>
+            <div class="group-actions">
+                <div *ngFor="let action of result.actions" class="action-item"
+                    [ngClass]="getPriorityColor(action.priority)">
+                    <div class="action-header">
+                        <span class="action-priority">
+                            <mat-icon>priority_high</mat-icon>
+                            {{ getPriorityLabel(action.priority) }}
+                        </span>
+                    </div>
+                    <div class="action-message">{{ action.msg }}</div>
+                    <div class="action-meta">
+                        <span>Règle: {{ action.ruleId }}</span>
+                        <span>Priorité: {{ action.priority }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="export-section">
+            <button mat-raised-button color="accent" (click)="exportResults()">
+                <mat-icon>download</mat-icon>
+                Exporter les résultats
+            </button>
+        </div>
+    </div>
+</mat-card>

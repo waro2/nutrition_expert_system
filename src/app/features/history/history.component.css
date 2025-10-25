@@ -1,0 +1,140 @@
+/* History Component Styles */
+
+.history-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.history-container mat-card {
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px;
+}
+
+.history-container mat-card-title {
+    color: #333;
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.search-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th.mat-header-cell {
+    background: #667eea;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+td.mat-cell {
+    background: #f8f9ff;
+    color: #333;
+}
+
+tr.mat-row:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.actions-bar {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.actions-bar button {
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.actions-bar button[color="primary"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+}
+
+.actions-bar button[color="primary"]:hover {
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.actions-bar button[color="warn"] {
+    background: linear-gradient(135deg, #f44336 0%, #e57373 100%);
+    color: white;
+    border: none;
+}
+
+.actions-bar button[color="warn"]:hover {
+    box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4);
+}
+
+.dialog-content {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.fact-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.fact-label {
+    font-weight: 500;
+}
+
+.actions-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 16px;
+}
+
+.action-card {
+    margin-bottom: 8px;
+}
+
+.action-header {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.rule-id {
+    font-size: 12px;
+    color: #666;
+    margin-left: auto;
+}
