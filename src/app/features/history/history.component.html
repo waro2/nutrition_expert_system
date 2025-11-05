@@ -37,13 +37,13 @@
                 </ng-container>
                 <!-- MAQA -->
                 <ng-container matColumnDef="MAQA">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>MAQA</th>
-                    <td mat-cell *matCellDef="let caseItem">{{ caseItem.facts.MAQA === 1 ? 'Oui' : 'Non' }}</td>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>MAQA (nb)</th>
+                    <td mat-cell *matCellDef="let caseItem">{{ caseItem.facts.MAQA }}</td>
                 </ng-container>
                 <!-- SML -->
                 <ng-container matColumnDef="SML">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>SML</th>
-                    <td mat-cell *matCellDef="let caseItem">{{ caseItem.facts.SML === 1 ? 'Oui' : 'Non' }}</td>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Signes malnutrition (nb)</th>
+                    <td mat-cell *matCellDef="let caseItem">{{ caseItem.facts.SML }}</td>
                 </ng-container>
                 <!-- Actions count -->
                 <ng-container matColumnDef="actionsCount">

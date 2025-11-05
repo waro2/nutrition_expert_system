@@ -70,13 +70,7 @@
             </div>
         </div>
 
-        <!-- DEBUG: Affichage temporaire du contenu des actions et actionGroups -->
-        <div style="margin:2rem 0; background:#fffbe6; color:#333; padding:1rem; border-radius:8px;">
-            <h4>DEBUG: result.actions</h4>
-            <pre>{{ result.actions | json }}</pre>
-            <h4>DEBUG: actionGroups</h4>
-            <pre>{{ actionGroups | json }}</pre>
-        </div>
+
 
         <!-- Affichage de secours si actionGroups est vide mais result.actions contient des éléments -->
         <div *ngIf="actionGroups.length === 0 && result.actions.length > 0" class="action-group">

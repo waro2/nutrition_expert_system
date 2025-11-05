@@ -15,7 +15,7 @@ export class FormConfigService {
         return [
             {
                 key: 'NSS',
-                label: 'Nombre de séances de sensibilisation',
+                label: 'Nombre de séance suivi',
                 type: 'number',
                 min: 0,
                 max: 20,
@@ -23,7 +23,7 @@ export class FormConfigService {
             },
             {
                 key: 'Peduca',
-                label: 'Participation aux activités éducatives',
+                label: 'Participation aux séance éducative dans le passé',
                 type: 'toggle',
                 required: true
             },
@@ -58,20 +58,22 @@ export class FormConfigService {
             },
             {
                 key: 'AAMA',
-                label: 'Alimentation adéquate minimale acceptable',
+                label: 'Apport alimentaire minimale acceptable',
                 type: 'toggle',
                 required: true
             },
             {
                 key: 'MAQA',
-                label: 'Méthodes d\'amélioration qualité aliments',
-                type: 'toggle',
+                label: 'Méthode pour améliorer la qualité des aliments (0..n)',
+                type: 'number',
+                min: 0,
                 required: true
             },
             {
                 key: 'SML',
-                label: 'Surveillance malnutrition légère',
-                type: 'toggle',
+                label: 'Signes de malnutrition (0..n)',
+                type: 'number',
+                min: 0,
                 required: true
             }
         ];

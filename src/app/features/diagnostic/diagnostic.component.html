@@ -12,13 +12,13 @@
             </mat-card-title>
             <form [formGroup]="diagnosticForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label for="NSS">Nombre de séances de sensibilisation</label>
+                    <label for="NSS">Nombre de séance suivi</label>
                     <input matInput type="number" id="NSS" formControlName="NSS" min="0" max="20" />
                     <mat-error *ngIf="getFieldError('NSS')">{{ getFieldError('NSS') }}</mat-error>
                 </div>
 
                 <div class="form-group">
-                    <label>Participation aux activités éducatives</label>
+                    <label>Participation aux séance éducative dans le passé</label>
                     <div class="toggle-group">
                         <button type="button" mat-button [class.active]="diagnosticForm.get('Peduca')?.value === 0"
                             (click)="diagnosticForm.get('Peduca')?.setValue(0)">Non</button>
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Alimentation adéquate minimale acceptable</label>
+                    <label>Apport alimentaire minimale acceptable</label>
                     <div class="toggle-group">
                         <button type="button" mat-button [class.active]="diagnosticForm.get('AAMA')?.value === 0"
                             (click)="diagnosticForm.get('AAMA')?.setValue(0)">Non</button>
@@ -62,26 +62,15 @@
                     </div>
                     <mat-error *ngIf="getFieldError('AAMA')">{{ getFieldError('AAMA') }}</mat-error>
                 </div>
-
                 <div class="form-group">
-                    <label>Méthodes d'amélioration qualité aliments</label>
-                    <div class="toggle-group">
-                        <button type="button" mat-button [class.active]="diagnosticForm.get('MAQA')?.value === 0"
-                            (click)="diagnosticForm.get('MAQA')?.setValue(0)">Non</button>
-                        <button type="button" mat-button [class.active]="diagnosticForm.get('MAQA')?.value === 1"
-                            (click)="diagnosticForm.get('MAQA')?.setValue(1)">Oui</button>
-                    </div>
+                    <label for="MAQA">Méthode pour améliorer la qualité des aliments (0..n)</label>
+                    <input matInput type="number" id="MAQA" formControlName="MAQA" min="0" />
                     <mat-error *ngIf="getFieldError('MAQA')">{{ getFieldError('MAQA') }}</mat-error>
                 </div>
 
                 <div class="form-group">
-                    <label>Surveillance malnutrition légère</label>
-                    <div class="toggle-group">
-                        <button type="button" mat-button [class.active]="diagnosticForm.get('SML')?.value === 0"
-                            (click)="diagnosticForm.get('SML')?.setValue(0)">Non</button>
-                        <button type="button" mat-button [class.active]="diagnosticForm.get('SML')?.value === 1"
-                            (click)="diagnosticForm.get('SML')?.setValue(1)">Oui</button>
-                    </div>
+                    <label for="SML">Signes de malnutrition (0..n)</label>
+                    <input matInput type="number" id="SML" formControlName="SML" min="0" />
                     <mat-error *ngIf="getFieldError('SML')">{{ getFieldError('SML') }}</mat-error>
                 </div>
 
